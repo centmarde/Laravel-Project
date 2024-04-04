@@ -21,10 +21,28 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => 'string|max:255|required',
-            'email' => 'string|email|required|max:255',
-            'password'=> 'min:8|required',
-        ];
+        if(request()->routeIs('user.store')) {
+            return [
+                'name' => 'string|max:255|required',
+                'email' => 'string|email|required|max:255|unique:App\Models\User,email',
+                'password'=> 'min:8|required',
+            ];
+        }
+        else if(request()->routeIs('user.update')) {
+            return [
+                'name' => 'string|max:255|required',
+            ];
+        }
+        else if(request()->routeIs('user.email')) {
+            return [
+                'email' => 'string|email|required|max:255|email',
+            ];
+        }
+        else if(request()->routeIs('user.password')) {
+            return [
+                'password'=> 'min:8|required|confirmed',
+            ];
+        }
+       
     }
 }
