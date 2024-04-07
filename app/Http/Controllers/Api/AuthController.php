@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
@@ -29,8 +30,13 @@ class AuthController extends Controller
         return $response;
     }
 
-    public function logout(UserRequest $request)
+    //logout using the specified resource
+    public function logout(Request $request)
     {
-        return false;
+        $request->user()->tokens()->delete();
+        $response = [
+            'message' => 'Logged out successfully'
+        ];
+        return $response;
     }
 } 
