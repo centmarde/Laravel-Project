@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\ProfileController;
 use App\Models\CarouselItems;
 
 /*
@@ -45,11 +44,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::put('/user/password/{id}', 'password')->name('user.password');
         Route::put('/user/image/{id}', 'image')->name('user.image');
     });
-
-    //User Specific API's
-
-    Route::put('/profile/image',[ProfileController::class, 'image'])->name('profile.image');
-
 });
 
 // Route::post('/user',[UserController::class, 'store'])->name('user.store');
