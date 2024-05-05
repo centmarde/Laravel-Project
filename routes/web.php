@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// web.php
+
+use App\Http\Controllers\UserController;
+
+Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');

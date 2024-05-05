@@ -24,7 +24,7 @@ class CarouselItemsController extends Controller
     {
         $validated = $request->validated();
         return CarouselItems::create($validated);
-        return $carouselItem;
+        /* return $carouselItem; */
     }
 
     /**
